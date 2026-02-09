@@ -2,7 +2,7 @@
 # Tugas Hands-On Modul 1                                         
 # Studi Kasus : Sistem Stok Barang Kantin (Berbasis File .txt)
 # Nama  : Zaky Alnadif
-# NIM   : J0403251141
+# NIM   : J0403251126
 # Kelas : Teknologi Rekayasa Perangkat Lunak A2
 #=================================================================#
 
