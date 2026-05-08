@@ -1,0 +1,85 @@
+# ==========================================
+# Studi Kasus Dunia Nyata
+# Nama : Zaky Alnadif
+# NIM : J0403251126
+# Graph: Peta Kota
+# ==========================================
+
+# Adjacency List
+graph = {
+    "Bogor": ["Jakarta", "Sukabumi"],
+    "Jakarta": ["Bogor", "Bandung", "Bekasi"],
+    "Bandung": ["Jakarta", "Cirebon"],
+    "Bekasi": ["Jakarta", "Cirebon"],
+    "Cirebon": ["Bandung", "Bekasi", "Sukabumi"],
+    "Sukabumi": ["Bogor", "Cirebon"]
+}
+
+# Daftar node
+nodes = list(graph.keys())
+
+# Membuat adjacency matrix
+matrix = []
+
+for kota1 in nodes:
+    row = []
+    
+    for kota2 in nodes:
+        if kota2 in graph[kota1]:
+            row.append(1)
+        else:
+            row.append(0)
+    
+    matrix.append(row)
+
+# ==========================================
+# OUTPUT PROGRAM
+# ==========================================
+
+print("=== ADJACENCY LIST ===")
+for kota in graph:
+    print(kota, "->", graph[kota])
+
+print("\n=== NODE (KOTA) ===")
+for kota in nodes:
+    print("-", kota)
+
+print("\n=== HUBUNGAN ANTAR KOTA (EDGE) ===")
+sudah_dicetak = []
+
+for kota in graph:
+    for tujuan in graph[kota]:
+        
+        # Menghindari edge ganda
+        if (tujuan, kota) not in sudah_dicetak:
+            print(kota, "<->", tujuan)
+            sudah_dicetak.append((kota, tujuan))
+
+print("\n=== ADJACENCY MATRIX ===")
+
+# Header matrix
+print("           ", end="")
+for kota in nodes:
+    print(f"{kota:>10}", end="")
+print()
+
+# Isi matrix
+for i in range(len(nodes)):
+    print(f"{nodes[i]:>10}", end="")
+    
+    for j in range(len(nodes)):
+        print(f"{matrix[i][j]:>10}", end="")
+    
+    print()
+
+# ==========================================
+# ANALISIS SINGKAT
+# ==========================================
+
+print("\n=== ANALISIS GRAPH ===")
+print("1. Jenis Graph : Undirected Graph")
+print("2. Node adalah kota")
+print("3. Edge adalah jalan penghubung antar kota")
+print("4. Adjacency List lebih cocok digunakan")
+print("   karena lebih sederhana dan hemat memori")
+print("5. Graph termasuk sparse graph")

@@ -1,0 +1,3 @@
+B01,Belajar Python,75000
+B02,Struktur Data Dasar,120000
+B03,Algoritma Keren,85000   

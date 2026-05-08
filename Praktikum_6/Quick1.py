@@ -1,67 +1,23 @@
-def quickSort(data):
-    quickSortHelper(data,0,len(data)-1)
-
-def quickSortHelper(data,first,last):
-    if first<last:
-        splitpoint = partition(data,first,last)
-        quickSortHelper(data,first,splitpoint-1)
-        quickSortHelper(data,splitpoint+1,last)
-
-def partition(data,first,last):
-    pivotvalue = data[first]
-    leftmark = first+1
-    rightmark = last
-    done = False
-    while not done:
-        while leftmark <= rightmark and data[leftmark] <= pivotvalue:
-            leftmark = leftmark + 1
-        while data[rightmark] >= pivotvalue and rightmark >= leftmark:
-            rightmark = rightmark - 1
-        if rightmark < leftmark:
-            done = True
-        else:
-            temp = data[leftmark]
-            data[leftmark] = data[rightmark]
-            data[rightmark] = temp
-    temp = data[first]
-    data[first] = data[rightmark]
-    data[rightmark] = temp
-    return rightmark
-
-data = [54,26,93,17,77,31,44,55,20]
-quickSort(data)
-print(data)
-
-def quickSortDescending(data):
-    quickSortHelperDescending(data,0,len(data)-1)
+def quicksort(data):
+    if len(data) <= 1:
+        return data
     
-def quickSortHelperDescending(data,first,last):
-    if first<last:
-        splitpoint = partitionDescending(data,first,last)
-        quickSortHelperDescending(data,first,splitpoint-1)
-        quickSortHelperDescending(data,splitpoint+1,last)
+    pivot = data[0]
 
-def partitionDescending(data,first,last):
-    pivotvalue = data[first]
-    leftmark = first+1
-    rightmark = last
-    done = False
-    while not done:
-        while leftmark <= rightmark and data[leftmark] >= pivotvalue:  # Changed to >= for descending order
-            leftmark = leftmark + 1
-        while data[rightmark] <= pivotvalue and rightmark >= leftmark:  # Changed to <= for descending order
-            rightmark = rightmark - 1
-        if rightmark < leftmark:
-            done = True
+    kiri = []
+    kanan = []
+    
+    for x in data[1:]:
+        if x <= pivot:
+            kiri.append(x)
         else:
-            temp = data[leftmark]
-            data[leftmark] = data[rightmark]
-            data[rightmark] = temp
-    temp = data[first]
-    data[first] = data[rightmark]
-    data[rightmark] = temp
-    return rightmark
-data = [54,26,93,17,77,31,44,55,20]
-quickSortDescending(data)
-print(data)
+            kanan.append(x)
+    return quicksort(kiri) + [pivot] + quicksort(kanan)
 
+data = [8, 4, 3, 7, 10, 9, 8, 2,]
+
+print ("data awal",data)
+
+hasil = quicksort(data)
+
+print ("data akhir", hasil)
